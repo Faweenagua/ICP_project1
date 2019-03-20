@@ -6,7 +6,7 @@ import java.util.Scanner;
  *A monitoring input/output class that monitors Galamsey objects.
  *@author Michael Dankwah AGYEMAN-PREMPEH
  *@author Alhassan ISSIFU
- *@author Francis AWEENGUA
+ *@author Francis AWEENAGUA
  *@author Eugenia AKPO
  */
 
@@ -50,11 +50,15 @@ public class MonitoringIO extends regexValidator{
             }
 
 
-            //Switch determines next task based on user's input in the main menu.
+            /**
+             * Switch determines next task based on user's input in the main menu.
+             **/
             switch (chooseInput) {
                 case 1:
 
-                    // if user's input in the main menu was 1, user inputs the details of the observatory for it to be created.
+                    /**
+                    * If user's input in the main menu was 1, user inputs the details of the observatory for it to be created.
+                    **/
                     
                 	System.out.println("Input name of Observatory");
                     String obName = scan2.nextLine();
