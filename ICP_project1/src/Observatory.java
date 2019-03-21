@@ -6,7 +6,7 @@ import java.util.Objects;
  * An Observatory class
  *@author Michael Dankwah AGYEMAN-PREMPEH
  *@author Alhassan ISSIFU
- *@author Francis AWEENGUA
+ *@author Francis AWEENAGUA
  *@author Eugenia AKPO
  */
 public class Observatory {
@@ -21,11 +21,11 @@ public class Observatory {
     public Observatory(){}
     /**
      * Overloaded constructor
-     * @param name
-     * @param country
-     * @param yearStarted
-     * @param areaInSquareKilometers
-     * @param events
+     * @param name of observatory
+     * @param country of country being observed
+     * @param yearStarted is the year observing a country started
+     * @param areaInSquareKilometers is the area of the observatory
+     * @param events is the number of events in an observatory
      */
     public Observatory(String name, String country, int yearStarted, double areaInSquareKilometers, ArrayList<Galamsey> events) {
         this.name = name;
@@ -34,6 +34,13 @@ public class Observatory {
         this.areaInSquareKilometers = areaInSquareKilometers;
         this.events = events;
     }
+    /**
+     * Overloaded constructor
+     * @param name of observatory
+     * @param country of country being observed
+     * @param yearStarted is the year observing a country started
+     * @param areaInSquareKilometers is the area of the observatory
+     */
     public Observatory(String name, String country, int yearStarted, double areaInSquareKilometers) {
         this.name = name;
         this.country = country;
@@ -41,36 +48,97 @@ public class Observatory {
         this.areaInSquareKilometers = areaInSquareKilometers;
     }
     
+    /**
+     * 
+     * @return areaInSquareKilometers of the observatory
+     */
     public double getAreaInSquareKilometers() {
         return areaInSquareKilometers;
     }
 
+    /**
+     * 
+     * @param areaInSquareKilometers of the observatory
+     */
     public void setAreaInSquareKilometers(double areaInSquareKilometers) {
         this.areaInSquareKilometers = areaInSquareKilometers;
     }
 
+    /**
+     * 
+     * @return numberOfGalamseyEvents in an observatory
+     */
     public Integer getNumberOfGalamseyEvents() {
         return numberOfGalamseyEvents;
     }
 
+    /**
+     * 
+     * @param numberOfGalamseyEvents in an observatory
+     */
     public void setNumberOfGalamseyEvents(Integer numberOfGalamseyEvents) {
         this.numberOfGalamseyEvents = numberOfGalamseyEvents;
     }
     
+    /**
+     * 
+     * @param g allows the user to add a Galamsey event called "g" (a placeholder) to an observatory.
+     */
     public void addEvent(Galamsey g){ 
         this.events.add(g);
         numberOfGalamseyEvents += 1;
     }
-
+    
+    
+/**
+ * 
+ * @return name of observatory
+ */
     public String getName() { return name; }
+    /**
+     * 
+     * @param name of observatory
+     */
     public void setName(String name) { this.name = name; }
+    /**
+     * 
+     * @return country being observed
+     */
     public String getCountry() { return country; }
+    /**
+     * 
+     * @param country being observed
+     */
     public void setCountry(String country) { this.country = country; }
+    /**
+     * 
+     * @return yearStarted, that is when observing began.
+     */
     public int getYearStarted() { return yearStarted; }
+    /**
+     * 
+     * @param yearStarted, that is when observing began.
+     */
     public void setYearStarted(int yearStarted) { this.yearStarted = yearStarted; }
+    /**
+     * 
+     * @return areaInSquareKilometers of the observatory
+     */
     public double getAreaInSquareMeters() { return areaInSquareKilometers; }
+    /**
+     * 
+     * @param areaInSquareMeters of the observatory
+     */
     public void setAreaInSquareMeters(double areaInSquareMeters) { this.areaInSquareKilometers = areaInSquareMeters; }
+    /**
+     * 
+     * @return events in the observatory
+     */
     public ArrayList<Galamsey> getEvents() { return events; }
+    /**
+     * 
+     * @param events in the observatory
+     */
     public void setEvents(ArrayList<Galamsey> events) { this.events = events; }
     /**
      * toString method that returns the details of an observatory as a string
@@ -102,7 +170,7 @@ public class Observatory {
                 Objects.equals(getEvents(), that.getEvents());  }
     /**
      * hash function
-     * @return
+     * @return the values of the elements in the observatory
      */
     @Override
     public int hashCode() {
