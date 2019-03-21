@@ -3,7 +3,7 @@ package theGalamseyArea;
 import java.util.ArrayList;
 import java.util.Objects;
 /**
- * An Observatory class
+ * An Observatory class that allows the user to study the properties of an area which is being observed
  *@author Michael Dankwah AGYEMAN-PREMPEH
  *@author Alhassan ISSIFU
  *@author Francis AWEENAGUA
