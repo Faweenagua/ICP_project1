@@ -13,24 +13,40 @@ import java.util.Scanner;
 public class MonitoringIO extends regexValidator{
 
 
-
     public static void main(String[] args) {
     	
+    	/**
+    	 * The creation of an instance of the regexValidator which will helps us validate the user's input
+    	 */
     	regexValidator validateIt =  new regexValidator();
 
-        //instantiates two scanners for both String and Int inputs from the user.
+    	/**
+    	 *  Instantiating two scanners for both String and Int inputs from the user.
+    	 */
+       
         Scanner scan = new Scanner(System.in);
         Scanner scan2 = new Scanner(System.in);
 
-        //Instantiates an observatory.
+        
+   
+        /**
+    	 * Instantiates an observatory.
+    	 */
         Observatory ob1 = null;
 
-        //While look keeps the program running until user inputs 0 in the main menu to close it
+        /**
+    	 * While loop keeps the program running until user inputs 0 in the main menu to close it
+    	 */
+        
         while (true) {
             int chooseInput;  // keeps the users input from the main menu
-
-            // if condition ensures that user can only create an observatory if the Observatory list is empty,
-            //that is, when user has no observatory to access data from.
+            
+            
+            /**
+        	 * If condition ensures that user can only create an observatory if the Observatory list is empty,
+        	 * that is, when user has no observatory to access data from.
+        	 */
+            
             if (Monitoring.observatories.isEmpty()){
                 System.out.println(" ");
                 System.out.println("***************************************************************");
@@ -39,8 +55,10 @@ public class MonitoringIO extends regexValidator{
                 System.out.println(" ");
                 chooseInput = 1;
             }else {
-                // User can now obtain data from existing observatories or create new observatories if there is at least one existing observatory
-                System.out.println(" ");
+            	/**
+            	 *  User can now obtain data from existing observatories or create new observatories if there is at least one existing observatory
+            	 */
+               
                 System.out.println("**************************************************");
                 System.out.println("***** Please select a task in the menu below *****");
                 System.out.println("**************************************************");
@@ -58,6 +76,7 @@ public class MonitoringIO extends regexValidator{
 
                     /**
                     * If user's input in the main menu was 1, user inputs the details of the observatory for it to be created.
+                    * The details are respectively Observatory name, year, country and area of observatory
                     **/
                     
                 	System.out.println("Input name of Observatory");
@@ -134,32 +153,54 @@ public class MonitoringIO extends regexValidator{
                     }
                     
 
-                    // After specifying details of observatory, the created observatoru is added to the observatory list.
+                    /**
+                	 * After specifying details of observatory, the created observatoru is added to the observatory list.
+                	 */
+                   
                     Monitoring.observatories.add(ob1);
-                    // A notification is displayed to notify the user that the observatory has been created.
+                    
+                    /**
+                	 * A notification is displayed to notify the user that the observatory has been created.
+                	 */
+                    
                     System.out.println("\n<<>> Notification: new observatory added <<>>");
                     break;
                     
                 case 2:
 
-                    //If user's input in the main menu was 2, user creates new "Galamsey" event
+                	/**
+                	 *If user's input in the main menu was 2, user creates new "Galamsey" event
+                	 */
+         
                     System.out.println("\nSelect an Observatory");
 
-                    // All available observatories are shown for user to choose one to add "Galamsey" event to
+                    /**
+                	 * All available observatories are shown for user to choose one to add "Galamsey" event to.
+                	 */
+         
                     for (Observatory anObservatory: Monitoring.observatories){
                         System.out.println(Monitoring.observatories.indexOf(anObservatory)+1 + " " + anObservatory.getName() + " observatory");
                     }
                     int nameOfob = scan.nextInt();
+                    
+                    /**
+                	 * Shows the observatory the user is adding the galamsey event to.
+                	 */
 
-                    //Shows the oservatory the user is adding the galamsey event to
+                    
                     System.out.println("\n[[] Input 'Galamsey' Data for the " + Monitoring.observatories.get(nameOfob-1).getName() + " observatory []]");
 
-                    // User specifies the number of galemsey events he/she intends to record.
+                    /**
+                	 *  User specifies the number of galemsey events he/she intends to record.
+                	 */
                     System.out.println("\nHow many 'Galamsey' activities will you like to record");
                     int numOfevents = scan.nextInt();
 
-                    // user inputs galamsey data for the number of times specified above
-                    // user can input 'exit' to end the input if there is a need to halt.
+                    /**
+                	 *  User inputs galamsey data for the number of times specified above
+                	 *  User can input 'exit' to end the input if there is a need to halt.
+                	 */
+                    
                     for (int i =0; i<numOfevents; i++){
                         System.out.println("\nInput Data for 'Galamsey' event [" + (i+1) +"] for " + Monitoring.observatories.get(nameOfob-1).getName() + " observatory");
                         System.out.println("\nEnter colour of vegetation (Green, Yellow or Brown) or 'exit' to quit");
@@ -168,7 +209,7 @@ public class MonitoringIO extends regexValidator{
                         Galamsey galamsey = new Galamsey();
                         galamsey.setVegetationColour(vegColor);
 
-                        //the color specified by the user is converted to int and assigned to the vegetation colour value
+                        //the color specified by the user is converted to int and assigned to the vegetation color value
                         if (vegColor.toLowerCase().equals("green")) galamsey.setVegetationColourValue(1);
                         if (vegColor.toLowerCase().equals("yellow")) galamsey.setVegetationColourValue(2);
                         if (vegColor.toLowerCase().equals("brown")) galamsey.setVegetationColourValue(3);
@@ -182,25 +223,55 @@ public class MonitoringIO extends regexValidator{
                         double siteLong = scan.nextDouble();
                         galamsey.setVegetationLatitude(siteLong);
 
+                        
+                        
 
-                        System.out.println("Enter the year this 'Galamsey' event started");
+                        System.out.println("Please Enter the year the Galamsey event started:");
                         int galYear = scan.nextInt();
-                        galamsey.setEventYear(galYear);
+                        while (true) {
+                        	if (scan.hasNextInt()){
+                        		if(validateIt.validateYear(Integer.toString(galYear))) {
+                        			galamsey.setEventYear(galYear);
+                        			break;
+                        		}else{
+                        			System.out.println("Invalid input : Please input in the right format");
+                            		
+                            		galYear = scan.nextInt();
+                        	
+                        		}
+                        	}else {
+                        			System.out.println("Invalid input : Please input in the right format");
+                        		
+                        			galYear = scan.nextInt();
+                        		
+                        	}
+                        }
+                        
 
-                        //new galamsey event is added to the galamsey events list for its observatory
+                        /*
+                         * new galamsey event is added to the galamsey events list for its observatory
+                         */
                         Monitoring.observatories.get(nameOfob-1).addEvent(galamsey);
 
-                        //user is notified on the successful addition of the galamsey event
+                        /*
+                         * user is notified on the successful addition of the galamsey event
+                         */
                         System.out.println("\n<<>> Notification: 'Galamsey' data added <<>>");
                     }
                     break;
                 case 3:
-                    //If user's input in the main menu was 3, User can view the data recorded
+                    /*
+                     * If user's input in the main menu was 3, User can view the data recorded
+                     */
 
-                    //while loop keeps block running until user inputs 0 to go to the main menu.
+                    /*
+                     * while loop keeps block running until user inputs 0 to go to the main menu.
+                     */
                     while (true) {
 
-                        //Asks user to select the type of information user wants to view.
+                        /*
+                         * Asks user to select the type of information user wants to view.
+                         */
                         System.out.println(" ");
                         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++");
                         System.out.println("++++ Kindly choose one of the following items ++++");
@@ -208,22 +279,30 @@ public class MonitoringIO extends regexValidator{
                         System.out.println("1 For monitoring statistics on largest average 'Galamsey'.\n2 For monitoring statistics on largest 'Galamsey'.\n3 to view 'Galamsey' data based on colour values.\n4 For all observatories under observation \n0 to Go Back");
                         int chooseInfoType = scan.nextInt();
 
-                        //Switch determines next task based on user's input in the sub menu.
+                        /*
+                         * Switch determines next task based on user's input in the sub menu.
+                         */
                         switch (chooseInfoType) {
                             case 1:
-                                // displays observatory with the largest average galamsey
+                                /*
+                                 * displays observatory with the largest average galamsey
+                                 */
                                 try {
                                     System.out.println("\nThe observatory with Largest average 'Galamsey' is\n");
                                     System.out.println(Monitoring.getObservatoryWithLargestAverage().getName());
                                 }catch(NullPointerException e){}
                                 break;
                             case 2:
-                                // displays highest galamsey color value recorded
+                                /*
+                                 * displays highest galamsey color value recorded
+                                 */
                                 System.out.println("\nHighest 'Galamsey' color value recorded.\n");
                                 System.out.println(Monitoring.getLargestGalamseyColourValueEverRecorded());
                                 break;
                             case 3:
-                                // Filters galamsey events based on the vegetation colour values
+                                /**
+                                 * Filters galamsey events based on the vegetation colour values
+                                 */
                                 System.out.println("\nSelect one of the options below");
                                 System.out.println("1 view 'Galamsey' activities with color values greater than: ");
                                 System.out.println("2 view 'Galamsey' events with color values less than: ");
@@ -233,7 +312,9 @@ public class MonitoringIO extends regexValidator{
                                 switch (selectView){
                                     case 1:
 
-                                        // Shows all "galamsey" events with vegetation colour values above a certain arbitrary value specified by the user
+                                        /*
+                                         * Shows all "galamsey" events with vegetation colour values above a certain arbitrary value specified by the user
+                                         */
                                         do {
                                             System.out.println("\nInput minimum color value: ");
                                             int leastInstances = scan.nextInt();
@@ -252,7 +333,9 @@ public class MonitoringIO extends regexValidator{
 
                                         break;
                                     case 2:
-                                        // Shows all "galamsey" events with vegetation colour values below a certain arbitrary value specified by the user
+                                        /*
+                                         * Shows all "galamsey" events with vegetation colour values below a certain arbitrary value specified by the user
+                                         */
 
                                         System.out.println("\nInput maximum color value: ");
                                         int maxColorValue = scan.nextInt();
@@ -262,7 +345,9 @@ public class MonitoringIO extends regexValidator{
                                         }
                                         break;
                                     case 3:
-                                        //Shows all "galamsey" events with vegetation colour values equal to a certain arbitrary value specified by the user
+                                        /*
+                                         * Shows all "galamsey" events with vegetation colour values equal to a certain arbitrary value specified by the user
+                                         */
 
                                         System.out.println("\nInput color value: ");
                                         int colorValue = scan.nextInt();
@@ -272,29 +357,39 @@ public class MonitoringIO extends regexValidator{
                                         }
                                         break;
                                     default:
-                                        //Prints an error if program records wrong input from the user
+                                        /*
+                                         * Prints an error if program records wrong input from the user
+                                         */
                                         System.out.println("Invalid input, Please select an item in the menu");
                                         break;
                                 }
                                 break;
                             case 4:
-                                //Shows all the current existing observatories
+                                /*
+                                 * Shows all the current existing observatories
+                                 */
                                 System.out.println("\nThe Current observatories include: ");
                                 for (Observatory anObservatory: Monitoring.observatories){
                                     System.out.println(Monitoring.observatories.indexOf(anObservatory)+1 + " " + anObservatory.getName() + " observatory");
                                 }
 
-                                // Requests for user to select one of the observatories to view its details
+                                /*
+                                 * Requests for user to select one of the observatories to view its details
+                                 */
                                 System.out.println("\nSelect an observatory to view its details");
                                 int selectOb = scan.nextInt();
                                 System.out.println(" ");
                                 System.out.println(Monitoring.observatories.get(selectOb-1).toString());
 
-                                //Checks if observatory has no galamsey event recorded.
+                                /*
+                                 * Checks if observatory has no galamsey event recorded.
+                                 */
                                 if (Monitoring.observatories.get(selectOb-1).getEvents().isEmpty()) {
                                     System.out.println("\nThis Observatory has no recorded 'Galamsey' events'");
                                 }else {
-                                    //Prints all galamsey events if observatory has galamsey events.
+                                    /*
+                                     * Prints all galamsey events if observatory has galamsey events.
+                                     */
                                     for (Galamsey g : Monitoring.observatories.get(selectOb - 1).getEvents()) {
                                         System.out.println(g.toString());
                                     }
@@ -303,12 +398,16 @@ public class MonitoringIO extends regexValidator{
                             case 0:
                                 break;
                             default:
-                                //Prints an error if program records wrong input
+                                /**
+                                 * Prints an error if program records wrong input
+                                 */
                                 System.out.println("Invalid input, Please select an item in the menu");
                                 break;
                         }
 
-                        //breaks while loop if user inputs 0.
+                        /**
+                         * breaks while loop if user inputs 0.
+                         */
                         if (chooseInfoType == 0) {
                             break;
                         }
@@ -318,12 +417,16 @@ public class MonitoringIO extends regexValidator{
                 case 0:
                     break;
                 default:
-                    //Prints an error if program records wrong input
+                    /**
+                     * Prints an error if program records wrong input
+                     */
                     System.out.println("Invalid input, Please select an item in the menu");
                     break;
             }
 
-            //breaks while loop if user inputs 0.
+            /**
+             * breaks while loop if user inputs 0.
+             */
             if(chooseInput == 0){
                 break;
             }
