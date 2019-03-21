@@ -209,7 +209,9 @@ public class MonitoringIO extends regexValidator{
                         Galamsey galamsey = new Galamsey();
                         galamsey.setVegetationColour(vegColor);
 
-                        //the color specified by the user is converted to int and assigned to the vegetation color value
+                        /**
+                        *The color specified by the user is converted to int and assigned to the vegetation color value
+                        */
                         if (vegColor.toLowerCase().equals("green")) galamsey.setVegetationColourValue(1);
                         if (vegColor.toLowerCase().equals("yellow")) galamsey.setVegetationColourValue(2);
                         if (vegColor.toLowerCase().equals("brown")) galamsey.setVegetationColourValue(3);
