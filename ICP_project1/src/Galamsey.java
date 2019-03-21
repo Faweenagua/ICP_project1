@@ -4,7 +4,7 @@ package theGalamseyArea;
  *A Galamsey class that identifies or detects Galamsey areas.
  *@author Michael Dankwah AGYEMAN-PREMPEH
  *@author Alhassan ISSIFU
- *@author Francis AWEENGUA
+ *@author Francis AWEENAGUA
  *@author Eugenia AKPO
  */
 public class Galamsey {
